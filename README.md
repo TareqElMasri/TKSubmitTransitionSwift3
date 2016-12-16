@@ -25,8 +25,8 @@ I made them as classes and you can use it with ease.
 ![Demo GIF Animation](https://github.com/entotsu/TKSubmitTransition/blob/master/demo.gif "Demo GIF Animation")
 
 # Installation
-	pod 'TKSubmitTransition'
 	use_frameworks!
+	pod 'TKSubmitTransitionSwift3'
 
 # Usage
 
