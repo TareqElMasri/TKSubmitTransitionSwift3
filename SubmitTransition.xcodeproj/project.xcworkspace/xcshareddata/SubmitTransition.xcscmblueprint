@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "376E39A442AFC4EC56A66CF9A84AB3D937D8DACF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "ACC8249AC755141721ABDE984E165175182CE05C" : 9223372036854775807,
+    "376E39A442AFC4EC56A66CF9A84AB3D937D8DACF" : 0,
+    "7AA546266BA5EB09CB654B4FDF712EA5D9EA2EBF" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BAAADD98-B505-4691-AE77-6559761D42D5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "ACC8249AC755141721ABDE984E165175182CE05C" : "..",
+    "376E39A442AFC4EC56A66CF9A84AB3D937D8DACF" : "TKSubmitTransition\/",
+    "7AA546266BA5EB09CB654B4FDF712EA5D9EA2EBF" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SubmitTransition",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SubmitTransition.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/entotsu\/TKSubmitTransition.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "376E39A442AFC4EC56A66CF9A84AB3D937D8DACF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:tarlepp\/angular-sailsjs-boilerplate.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7AA546266BA5EB09CB654B4FDF712EA5D9EA2EBF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/itsmarteg\/m-m_app-v3.1.3.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ACC8249AC755141721ABDE984E165175182CE05C"
+    }
+  ]
+}
