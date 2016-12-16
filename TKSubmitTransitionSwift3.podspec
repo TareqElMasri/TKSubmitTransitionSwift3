@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/TareqElMasri/TKSubmitTransitionSwift3.git", :tag => "0.5" }
+  s.source       = { :git => "https://github.com/TareqElMasri/TKSubmitTransitionSwift3.git", :tag => "0.6" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
