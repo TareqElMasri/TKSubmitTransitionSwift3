@@ -13,6 +13,10 @@
 
 **Swift 3.0!! :cat:**
 
+***NOTE:***
+This repesitory is a fork from the original [TKSubmitTransition](https://github.com/entotsu/TKSubmitTransition).
+I didn't make the library, I only migrated it to Swift 3 and fixed the migration issues and added missing features.
+
 Inpired by https://dribbble.com/shots/1945593-Login-Home-Screen
 
 I created Animated UIButton of Loading Animation and Transition Animation.
