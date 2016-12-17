@@ -7,7 +7,7 @@
 )](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat
 )](http://mit-license.org)
-[![CocoaPods](https://img.shields.io/cocoapods/v/TKSubmitTransition.svg)]()
+[![CocoaPods](https://img.shields.io/cocoapods/v/TKSubmitTransitionSwift3.svg)]()
 
 **Swift 3.0!! :cat:**
 
