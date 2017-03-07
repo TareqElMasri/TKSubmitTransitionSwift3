@@ -10,20 +10,23 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
         return s
     }()
     
-    @IBInspectable open var spinnerColor: UIColor = UIColor.white {
+    @IBInspectable
+    open var spinnerColor: UIColor = UIColor.white {
         didSet {
             spiner.spinnerColor = spinnerColor
         }
     }
     
     //Normal state bg and border
-    @IBInspectable var normalBorderColor: UIColor? {
+    @IBInspectable
+    var normalBorderColor: UIColor? {
         didSet {
             layer.borderColor = normalBorderColor?.cgColor
         }
     }
     
-    @IBInspectable var normalBackgroundColor: UIColor? {
+    @IBInspectable
+    var normalBackgroundColor: UIColor? {
         didSet {
             setBgColorForState(color: normalBackgroundColor, forState: .normal)
         }
@@ -31,15 +34,17 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
     
     
     //Highlighted state bg and border
-    @IBInspectable var highlightedBorderColor: UIColor?
+    @IBInspectable
+    var highlightedBorderColor: UIColor?
     
-    @IBInspectable var highlightedBackgroundColor: UIColor? {
+    @IBInspectable
+    var highlightedBackgroundColor: UIColor? {
         didSet {
             setBgColorForState(color: highlightedBackgroundColor, forState: .highlighted)
         }
     }
     
-    private func setBgColorForState(color: UIColor?, forState: UIControlState){
+    private func setBgColorForState(color: UIColor?, forState: UIControlState) {
         if color != nil {
             setBackgroundImage(UIImage.imageWithColor(color: color!), for: forState)
             
@@ -48,50 +53,57 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
         }
     }
     
-
-    open var didEndFinishAnimation : (()->())? = nil
-
-    let springGoEase = CAMediaTimingFunction(controlPoints: 0.45, -0.36, 0.44, 0.92)
-    let shrinkCurve = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-    let expandCurve = CAMediaTimingFunction(controlPoints: 0.95, 0.02, 1, 0.05)
-    let shrinkDuration: CFTimeInterval  = 0.1
-    @IBInspectable open var normalCornerRadius:CGFloat? = 0.0{
+    @IBInspectable
+    open var normalCornerRadius: CGFloat? = 0.0 {
         didSet {
             self.layer.cornerRadius = normalCornerRadius!
         }
     }
-
+    
+    
+    open var didEndFinishAnimation : (()->())? = nil
+    
+    let springGoEase = CAMediaTimingFunction(controlPoints: 0.45, -0.36, 0.44, 0.92)
+    let shrinkCurve = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+    let expandCurve = CAMediaTimingFunction(controlPoints: 0.95, 0.02, 1, 0.05)
+    let shrinkDuration: CFTimeInterval  = 0.1
+    
     var cachedTitle: String?
-
+    
+    open override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        if let value = value as? CGFloat?, key == "normalCornerRadius" {
+            self.normalCornerRadius = value
+        }
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
     }
-
+    
     public required init!(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.setup()
     }
-
+    
     func setup() {
         self.clipsToBounds = true
         spiner.spinnerColor = spinnerColor
     }
-
+    
     open func startLoadingAnimation() {
         self.cachedTitle = title(for: UIControlState())
         self.setTitle("", for: UIControlState())
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.layer.cornerRadius = self.frame.height / 2
-            }, completion: { (done) -> Void in
-                self.shrink()
-                _ = Timer.schedule(delay: self.shrinkDuration - 0.25) { _ in
-                    self.spiner.animation()
-                }
-        }) 
-        
+        }, completion: { (done) -> Void in
+            self.shrink()
+            _ = Timer.schedule(delay: self.shrinkDuration - 0.25) { _ in
+                self.spiner.animation()
+            }
+        })
     }
-
+    
     open func startFinishAnimation(_ delay: TimeInterval, completion:(()->())?) {
         _ = Timer.schedule(delay: delay) { _ in
             self.didEndFinishAnimation = completion
@@ -99,12 +111,12 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
             self.spiner.stopAnimation()
         }
     }
-
+    
     open func animate(_ duration: TimeInterval, completion:(()->())?) {
         startLoadingAnimation()
         startFinishAnimation(duration, completion: completion)
     }
-
+    
     open func setOriginalState() {
         self.returnToOriginalState()
         self.spiner.stopAnimation()
@@ -128,6 +140,7 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
     }
     
     func shrink() {
+        CATransaction.begin()
         let shrinkAnim = CABasicAnimation(keyPath: "bounds.size.width")
         shrinkAnim.fromValue = frame.width
         shrinkAnim.toValue = frame.height
@@ -136,9 +149,11 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
         shrinkAnim.fillMode = kCAFillModeForwards
         shrinkAnim.isRemovedOnCompletion = false
         layer.add(shrinkAnim, forKey: shrinkAnim.keyPath)
+        CATransaction.commit()
     }
     
     func expand() {
+        CATransaction.begin()
         let expandAnim = CABasicAnimation(keyPath: "transform.scale")
         expandAnim.fromValue = 1.0
         expandAnim.toValue = 26.0
@@ -147,7 +162,11 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
         expandAnim.delegate = self
         expandAnim.fillMode = kCAFillModeForwards
         expandAnim.isRemovedOnCompletion = false
+        CATransaction.setCompletionBlock {
+            self.layer.cornerRadius = self.normalCornerRadius!
+        }
         layer.add(expandAnim, forKey: expandAnim.keyPath)
+        CATransaction.commit()
     }
     
 }
