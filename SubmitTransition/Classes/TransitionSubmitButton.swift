@@ -70,6 +70,8 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
     
     var cachedTitle: String?
     
+    private var originalWidth: CGFloat?
+    
     open override func setValue(_ value: Any?, forUndefinedKey key: String) {
         if let value = value as? CGFloat?, key == "normalCornerRadius" {
             self.normalCornerRadius = value
@@ -103,6 +105,15 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
             }
         })
     }
+    
+    open func stopLoadingAnimation(_ delay: TimeInterval, beExpand: Bool = false, completion:(()->())?) {
+        _ = Timer.schedule(delay: delay) { _ in
+            if beExpand { self.expand() } else { self.reset() }
+            self.spiner.stopAnimation()
+            completion?()
+        }
+    }
+    
     
     open func startFinishAnimation(_ delay: TimeInterval, completion:(()->())?) {
         _ = Timer.schedule(delay: delay) { _ in
@@ -140,6 +151,8 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
     }
     
     func shrink() {
+        self.originalWidth = self.bounds.size.width
+        
         CATransaction.begin()
         let shrinkAnim = CABasicAnimation(keyPath: "bounds.size.width")
         shrinkAnim.fromValue = frame.width
@@ -148,6 +161,22 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
         shrinkAnim.timingFunction = shrinkCurve
         shrinkAnim.fillMode = kCAFillModeForwards
         shrinkAnim.isRemovedOnCompletion = false
+        layer.add(shrinkAnim, forKey: shrinkAnim.keyPath)
+        CATransaction.commit()
+    }
+    
+    func reset() {
+        CATransaction.begin()
+        let shrinkAnim = CABasicAnimation(keyPath: "bounds.size.width")
+        shrinkAnim.fromValue = frame.height
+        shrinkAnim.toValue = self.originalWidth
+        shrinkAnim.duration = shrinkDuration
+        shrinkAnim.timingFunction = shrinkCurve
+        shrinkAnim.fillMode = kCAFillModeForwards
+        shrinkAnim.isRemovedOnCompletion = false
+        CATransaction.setCompletionBlock { 
+            self.setOriginalState()
+        }
         layer.add(shrinkAnim, forKey: shrinkAnim.keyPath)
         CATransaction.commit()
     }
