@@ -108,9 +108,9 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
     
     open func stopLoadingAnimation(_ delay: TimeInterval, beExpand: Bool = false, completion:(()->())?) {
         _ = Timer.schedule(delay: delay) { _ in
+            self.didEndFinishAnimation = completion
             if beExpand { self.expand() } else { self.reset() }
             self.spiner.stopAnimation()
-            completion?()
         }
     }
     
@@ -176,6 +176,7 @@ open class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDel
         shrinkAnim.isRemovedOnCompletion = false
         CATransaction.setCompletionBlock { 
             self.setOriginalState()
+            self.didEndFinishAnimation?()
         }
         layer.add(shrinkAnim, forKey: shrinkAnim.keyPath)
         CATransaction.commit()
