@@ -18,13 +18,22 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         btn.frame.bottom = self.view.frame.height - 60
         btn.setTitle("Sign in", for: UIControlState())
         btn.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-        btn.addTarget(self, action: #selector(ViewController.onTapButton(_:)), for: UIControlEvents.touchUpInside)
+        btn.addTarget(self, action: #selector(ViewController.onTapButton2(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(btn)
 
         self.view.bringSubview(toFront: self.btnFromNib)
     }
 
     @IBAction func onTapButton(_ button: TKTransitionSubmitButton) {
+        button.startLoadingAnimation()
+        
+        // Has some trouble
+        button.stopLoadingAnimation(2.0, beExpand: false) {
+            print("Login fail")
+        }
+    }
+    
+    func onTapButton2(_ button: TKTransitionSubmitButton) {
         button.animate(1, completion: { () -> () in
             let secondVC = SecondViewController()
             secondVC.transitioningDelegate = self
