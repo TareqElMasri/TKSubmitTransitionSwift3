@@ -15,15 +15,15 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "TKSubmitTransitionSwift3"
-  s.version      = "0.5"
+  s.name         = "TKSubmitTransitionSwift3-PrPrLive"
+  s.version      = "0.0.1"
   s.summary      = "Animated UIButton of Loading Animation and Transition Animation. Inspired by https://dribbble.com/shots/1945593-Login-Home-Screen"
 
   # s.description  = <<-DESC
   #                  Animated UIButton of Loading Animation and Transition Animation. Inspired by https://dribbble.com/shots/1945593-Login-Home-Screen
   #                  DESC
 
-  s.homepage     = "https://github.com/TareqElMasri/TKSubmitTransitionSwift3"
+  s.homepage     = "https://github.com/PrPrLive/TKSubmitTransitionSwift3"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -48,9 +48,9 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Takuya.Okamoto" => "blackn.red42@gmail.com" }
+  # s.author             = { "Takuya.Okamoto" => "blackn.red42@gmail.com" }
   # Or just: s.author    = "Takuya.Okamoto"
-  # s.authors            = { "Takuya.Okamoto" => "blackn.red42@gmail.com" }
+  s.authors            = { "Takuya.Okamoto" => "blackn.red42@gmail.com", "Leo" => "leodaxia@gmail.com" }
   # s.social_media_url   = "http://twitter.com/Takuya.Okamoto"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/TareqElMasri/TKSubmitTransitionSwift3.git", :tag => "0.6" }
+  s.source       = { :git => "https://github.com/PrPrLive/TKSubmitTransitionSwift3.git", :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
